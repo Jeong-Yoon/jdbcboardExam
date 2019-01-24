@@ -2,9 +2,7 @@ package my.examples.jdbcboard.dao;
 
 import my.examples.jdbcboard.dto.Board;
 import my.examples.jdbcboard.util.ConnectionContextHolder;
-import my.examples.jdbcboard.util.DBUtil;
-import my.examples.jdbcboard.util.DBUtilHikari;
-import org.springframework.security.core.parameters.P;
+
 
 import java.sql.*;
 import java.util.ArrayList;
