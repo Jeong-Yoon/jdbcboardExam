@@ -2,7 +2,6 @@ package my.examples.jdbcboard.servlet;
 
 import my.examples.jdbcboard.dto.Board;
 import my.examples.jdbcboard.dao.BoardDao;
-import my.examples.jdbcboard.dao.BoardDaoImpl;
 import my.examples.jdbcboard.dao.BoardDaoImplHikari;
 import my.examples.jdbcboard.service.BoardService;
 import my.examples.jdbcboard.service.BoardServiceImpl;
@@ -31,7 +30,7 @@ public class ViewServlet extends HttpServlet {
 
         BoardService boardService = new BoardServiceImpl();
         Board board = boardService.getBoard(id);
-
+        board.setContent(board.getContent().replaceAll("\n", "<br>\n"));
         req.setAttribute("board",board);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/view.jsp");
         requestDispatcher.forward(req,resp);

@@ -22,7 +22,7 @@ public class BoardDaoImplHikari implements BoardDao {
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
                         long id = rs.getLong(1);
-                        String userId = rs.getString(2);
+                        Long userId = rs.getLong(2);
                         String userName = rs.getString(3);
                         String title = rs.getString(4);
                         String content = rs.getString(5);
@@ -61,7 +61,7 @@ public class BoardDaoImplHikari implements BoardDao {
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
                         long id = rs.getLong(1);
-                        String userId = rs.getString(2);
+                        Long userId = rs.getLong(2);
                         String userName = rs.getString(3);
                         String title = rs.getString(4);
                         int prNo = rs.getInt(5);
@@ -86,7 +86,7 @@ public class BoardDaoImplHikari implements BoardDao {
         try {
             Connection conn = ConnectionContextHolder.getConnection();
             try (PreparedStatement ps = conn.prepareStatement(BoardDaoSQL.INSERT)) {
-                ps.setString(1, board.getUserId());
+                ps.setLong(1, board.getUserId());
                 ps.setString(2, board.getTitle());
                 ps.setString(3, board.getContent());
                 ps.executeUpdate();
@@ -220,5 +220,38 @@ public class BoardDaoImplHikari implements BoardDao {
             e.printStackTrace();
         }
         return total;
+    }
+
+    @Override
+    public void updateGroupSeqGt(int groupNo, int reOrd) {
+        try{
+            Connection conn = ConnectionContextHolder.getConnection();
+            try(PreparedStatement ps = conn.prepareStatement(BoardDaoSQL.UPDATE_GROUP_SEQ_GT);) {
+                ps.setInt(1, groupNo);
+                ps.setInt(2, reOrd);
+                ps.executeUpdate(); // 입력,수정,삭제 건수 가 리턴된다.
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addReBoard(Board board) {
+        try{
+            Connection conn = ConnectionContextHolder.getConnection();
+            try(PreparedStatement ps = conn.prepareStatement(BoardDaoSQL.INSERT_RE)) {
+
+                ps.setString(1, board.getTitle());
+                ps.setLong(2, board.getUserId());
+                ps.setString(3, board.getContent());
+                ps.setInt(4, board.getPrNo());
+                ps.setInt(5, board.getReOrd() + 1);
+                ps.setInt(6, board.getReDepth() + 1);
+                ps.executeUpdate(); // 입력,수정,삭제 건수 가 리턴된다.
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

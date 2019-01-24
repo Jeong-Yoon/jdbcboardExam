@@ -60,8 +60,8 @@ public class HikariCPExam {
                 Date regdate = rs.getDate(9);
                 int hit = rs.getInt(10);
 
-                Board board = new Board(id,userId,userName,title,content,prNo,reDepth,reOrd,regdate,hit);
-                System.out.println(board);
+//                Board board = new Board(id,userId,userName,title,content,prNo,reDepth,reOrd,regdate,hit);
+//                System.out.println(board);
             }
         }catch(Exception ex){
             ex.printStackTrace();

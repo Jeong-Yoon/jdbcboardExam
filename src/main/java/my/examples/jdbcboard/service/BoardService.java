@@ -9,10 +9,11 @@ public interface BoardService {
     // 전체 건수를 읽어온다.
     // 글을 읽어온다. (글읽기 + 조회수증가)
     // 글을 삭제한다.
-    public List<Board> getBoards(int start, int limit);
-    public Board getBoard(Long id);
-    public void deleteBoard(Long id);
-    public void addBoard(Board board);
-    public void modifyBoard(Board board,Long id);
-    public int getTotalCount();
+     List<Board> getBoards(int start, int limit);
+     Board getBoard(Long id);
+     void deleteBoard(Long id);
+     void addBoard(Board board);
+     void modifyBoard(Board board,Long id);
+    int getTotalCount();
+    void addReBoard(Board board);
 }

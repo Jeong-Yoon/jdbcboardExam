@@ -110,7 +110,8 @@
                         <%--<td>${status.index + 1}</td>--%>
                         <td>${board.id}</td>
                         <%--<td><a type="submit" href="/board/view" onclick="document.forms['board'].submit();">${board.title}</a></td>--%>
-                        <td><a href="/board/view?id=${board.id}">${board.title}</a></td>
+                        <td><c:forEach begin="1" end="${board.reOrd}">&nbsp;re:</c:forEach>
+                            <a href="/board/view?id=${board.id}">${board.title}</a></td>
                         <%--<input type="hidden" name="password" value="${board.password}">--%>
                         <td>${board.userName}</td>
                         <td>${board.regdate}</td>

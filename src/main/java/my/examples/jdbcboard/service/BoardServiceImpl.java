@@ -119,4 +119,28 @@ public class BoardServiceImpl implements BoardService {
         }
         return total;
     }
+
+    @Override
+    public void addReBoard(Board board) {
+        Connection conn = null;
+        BoardDao boardDao = new BoardDaoImplHikari();
+        try {
+            conn = DBUtilHikari.getInstance().getConnection();
+            ConnectionContextHolder.setConnection(conn);
+
+            Board oBoard = boardDao.getBoard(board.getId());
+            board.setReOrd(oBoard.getReOrd());
+            board.setPrNo(oBoard.getPrNo());
+            board.setReDepth(oBoard.getReDepth());
+            boardDao.updateGroupSeqGt(oBoard.getPrNo(), oBoard.getReOrd());
+            boardDao.addReBoard(board);
+
+            conn.commit(); // 트랜젝션 commit
+        }catch(Exception ex){
+            DBUtilHikari.rollback(conn);
+            ex.printStackTrace();
+        }finally {
+            DBUtilHikari.close(conn);
+        }
+    }
 }

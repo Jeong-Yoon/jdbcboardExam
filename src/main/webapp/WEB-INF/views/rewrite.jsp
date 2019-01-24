@@ -60,20 +60,6 @@
             position:relative;
             top:1px;
         }
-        .form-cntl {
-            display: block;
-            width: 100%;
-            height: calc(2.25rem + 2px);
-            padding: .375rem .75rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            /*border: 1px solid #ced4da;*/
-            border-radius: .25rem;
-            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        }
     </style>
 </head>
 <body>
@@ -82,21 +68,19 @@
         <div class="row justify-content-center">
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">글수정</div>
+                    <div class="card-header">글쓰기</div>
 
                     <div class="card-body">
 
                         <div class="card-body-center">
-                            <form name="my-form" action="/board/modify" method="post">
-                                <input type="hidden" id="id" name="id" value="${board.id}">
-                                <input type="hidden" id="userId" name="userId" value="${board.userId}">
+                            <form name="my-form" action="/rewrite" method="post">
                                 <div class="form-group row">
-                                    <label for="userId" class="col-md-2 col-form-label text-md-right">작성자</label>
+                                    <label class="col-md-2 col-form-label text-md-right">작성자</label>
                                     <div class="col-md-9">
-                                        <a type="text" id="userName" class="form-cntl" name="userName">${board.userName}</a>
+                                        <label>${sessionScope.logininfo.name} </label>
                                     </div>
                                 </div>
-
+                                <input type="hidden" name="id" value="${board.id}">
                                 <%--<div class="form-group row">--%>
                                     <%--<label for="password"--%>
                                                  <%--class="col-md-2 col-form-label text-md-right">암호</label>--%>
@@ -114,7 +98,11 @@
 
                                 <div class="form-group row">
                                     <label for="content" class="col-md-2 col-form-label text-md-right">내용</label>
-                                    <textarea class="col-md-9" id="content" name="content" rows="8">${board.content}</textarea>
+                                    <textarea class="col-md-9" id="content" name="content" rows="8">
+
+
+                                        ${board.content}
+                                    </textarea>
                                 </div>
 
                                 <div class="d-flex flex-row-reverse">
@@ -122,14 +110,14 @@
 
 
                                         <div class="p-2">
-                                            <button type="submit" onclick="location.href='/board/modify'" class="mybtn">
+                                            <button type="submit" class="mybtn">
                                                 등록
                                             </button>
                                         </div>
 
                                         <div class="p-2">
-                                            <button type="button" onclick="location.href='/board/view?id=${board.id}'" class="mybtn">
-                                                취소
+                                            <button type="button" onclick="location.href='/board/list'" class="mybtn">
+                                                목록
                                             </button>
                                         </div>
                                     </div>

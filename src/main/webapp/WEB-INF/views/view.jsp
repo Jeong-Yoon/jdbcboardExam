@@ -107,8 +107,13 @@
                             <div class="article-footer">
                                 <button onclick="location.href='/board/list'" class="mybtn">목록</button>
                                 <%--<a href="/board/list" class="btn btn-primary">목록</a>--%>
-                                    <button type="button" onclick="location.href='/board/modify?id=${board.id}'" class="mybtn" data-toggle="modal" data-target="#check">수정</button>
-                                <button type="button" onclick="location.href='/board/delete?id=${board.id}'" class="mybtn" data-toggle="modal" data-target="#check">삭제</button>
+                                <c:if test="${board.userId != sessionScope.logininfo.id}">
+                                <button type="button" onclick="location.href='/rewrite?id=${board.id}'" class="mybtn" data-target="#check">답글</button>
+                                </c:if>
+                                <c:if test="${board.userId == sessionScope.logininfo.id}">
+                                <button type="button" onclick="location.href='/board/modify?id=${board.id}'" class="mybtn" data-target="#check">수정</button>
+                                    <button type="button" onclick="location.href='/board/delete?id=${board.id}'" class="mybtn" data-target="#check">삭제</button>
+                                </c:if>
                             </div>
                         </div>
                     </div>

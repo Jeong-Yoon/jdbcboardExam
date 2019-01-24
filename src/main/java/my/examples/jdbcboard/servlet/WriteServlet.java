@@ -1,9 +1,9 @@
 package my.examples.jdbcboard.servlet;
 
 import my.examples.jdbcboard.dao.BoardDao;
-import my.examples.jdbcboard.dao.BoardDaoImpl;
 import my.examples.jdbcboard.dao.BoardDaoImplHikari;
 import my.examples.jdbcboard.dto.Board;
+import my.examples.jdbcboard.dto.User;
 import my.examples.jdbcboard.service.BoardService;
 import my.examples.jdbcboard.service.BoardServiceImpl;
 
@@ -31,16 +31,22 @@ public class WriteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String userId = req.getParameter("userId");
         String title = req.getParameter("title");
         String content = req.getParameter("content");
 
-        System.out.println(userId);
+        User user = (User) req.getSession().getAttribute("logininfo");
+
+
+        System.out.println(user.getId());
         System.out.println("=========================="+title);
 
 
         BoardService boardService = new BoardServiceImpl();
-        Board board = new Board(title, content, userId);
+        Board board = new Board();
+        board.setTitle(title);
+        board.setContent(content);
+        board.setUserId(user.getId());
+        board.setUserName(user.getName());
         boardService.addBoard(board);
         resp.sendRedirect("/board/list");
     }

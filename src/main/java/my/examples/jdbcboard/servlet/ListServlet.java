@@ -3,7 +3,6 @@ package my.examples.jdbcboard.servlet;
 import my.examples.jdbcboard.dao.BoardAction;
 import my.examples.jdbcboard.dto.Board;
 import my.examples.jdbcboard.dao.BoardDao;
-import my.examples.jdbcboard.dao.BoardDaoImpl;
 import my.examples.jdbcboard.dao.BoardDaoImplHikari;
 import my.examples.jdbcboard.service.BoardService;
 import my.examples.jdbcboard.service.BoardServiceImpl;

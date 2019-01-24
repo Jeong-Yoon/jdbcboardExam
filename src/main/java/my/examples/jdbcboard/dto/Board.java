@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Board {
     private long id;
-    private String userId;
+    private Long userId;
     private String userName;
     private String title;
     private String content;
@@ -19,14 +19,14 @@ public class Board {
         this.readCnt = 0;
     }
 
-//    public Board(String title, String content, String name) {
-//        this();
-//        this.title = title;
-//        this.content = content;
-//        this.userName = name;
-//    }
+    public Board(String title, String content, String name) {
+        this();
+        this.title = title;
+        this.content = content;
+        this.userName = name;
+    }
 
-    public Board(String title, String content, String userId) {
+    public Board(String title, String content, Long userId) {
         this();
         this.title = title;
         this.content = content;
@@ -40,7 +40,7 @@ public class Board {
         this.readCnt = readCnt;
     }
 
-    public Board(long id, String userId, String userName, String title, int prNo, int reDepth, int reOrd, Date regdate, int readCnt) {
+    public Board(long id, Long userId, String userName, String title, int prNo, int reDepth, int reOrd, Date regdate, int readCnt) {
         this.id = id;
         this.userId = userId;
         this.userName = userName;
@@ -51,7 +51,7 @@ public class Board {
         this.regdate = regdate;
         this.readCnt = readCnt;
     }
-    public Board(long id, String userId, String userName, String title, String content, int prNo, int reDepth, int reOrd, Date regdate, int readCnt) {
+    public Board(long id, Long userId, String userName, String title, String content, int prNo, int reDepth, int reOrd, Date regdate, int readCnt) {
         this.id = id;
         this.userId = userId;
         this.userName = userName;
@@ -72,11 +72,11 @@ public class Board {
         this.id = id;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

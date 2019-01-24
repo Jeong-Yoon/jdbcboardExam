@@ -16,5 +16,7 @@ public interface BoardDao {
     void modifyBoard(Board board,Long id);
     int listCnt();
     int getTotalCount();
+    void updateGroupSeqGt(int groupNo, int groupSeq);
+    void addReBoard(Board board);
 //    public void setBoard(String id, String title, String content, int prNo, int depth, int ord);
 }
